@@ -3,6 +3,9 @@
 <details>
 <summary>Laboratory work 1</summary>  
 
+#### [Laboratory work 1](./lab1/). This link is for quick access to the lab folder
+
+
 #### Result: 
 ```
 Середній наробіток до відмови Tср: 198.43  
