@@ -17,8 +17,15 @@
 
 
 <details>
-<summary>Laboratory work 2 (in process)</summary>
+<summary>Laboratory work 2</summary>
 
+#### [Laboratory work 2](./lab2/). This link is for quick access to the lab folder
+
+
+#### Result:
+```
+Результуюча ймовірніть безвідмовної роботи: 0.32183072746706026
+```
 </details>
 
 <details>
