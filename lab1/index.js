@@ -29,7 +29,7 @@ const gamma = 0.62, time1 = 275, time2 = 648
 let intervalLen = 0
 let tenIntervals = []
 let statDensities = []
-let PList = []
+let pList = []
 
 const getTcp = (table) => {
     const tableSum = table.reduce((previous, current) => previous + current, 0)
@@ -46,6 +46,32 @@ const getT = (gamma) => {
         tenIntervals.push(result)
     }
 
+
+    for (let interval in tenIntervals) {
+        tenIntervals[interval] = interval.length / (hourTable.sort().length * intervalLen)
+    }
+
+
+    let areaSum = 1
+    for (let i=0; i<10; i++) {
+        pList.push(areaSum)
+        areaSum -= statDensities[i] * intervalLen
+    }
+
+
+    let less = [], more = []
+    pList.forEach((p) => {
+        p < gamma ? less.push(p) : more.push(p)
+    })
+    const pLess = Math.max(less)
+    const pMore = Math.min(more)
+
+
+    const indexMore = pList.indexOf(pMore)
+
+
+    const d = (pMore - gamma) / (pMore - pLess)
+    return indexMore + intervalLen * d   // t
 
 }
 
