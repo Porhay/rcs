@@ -1,0 +1,21 @@
+{
+  "name": "rcs",
+  "version": "1.0.0",
+  "description": "labs",
+  "main": "index.js",
+  "scripts": {
+    "lab1": "node lab1/index.js",
+    "lab2": "node lab2/index.js",
+    "lab3": "node lab3/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Porhay/rcs.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Porhay/rcs/issues"
+  },
+  "homepage": "https://github.com/Porhay/rcs#readme"
+}
