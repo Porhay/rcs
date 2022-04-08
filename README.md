@@ -1,5 +1,7 @@
 # Reliability of computer systems
 
+### List of laboratory works
+
 <details>
 <summary>Laboratory work 1</summary>  
 
