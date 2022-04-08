@@ -40,8 +40,13 @@ const calculate = (pObject) => {
     const pParal = 1 - (1 - p13467) * (1 - p23568)
 
     // Сумарне p - об'єднання послідовних p12, pParal та p78
-    return p12 * pParal * p78
+    const p = p12 * pParal * p78
+    console.log(`Результуюча ймовірніть безвідмовної роботи: ${p}`)
+    return p
 }
 
-console.log(`Результуюча ймовірніть безвідмовної роботи: ${calculate(pObject)}`)
-
+calculate(pObject)
+module.exports = {
+    calculate,
+    pObject
+}
