@@ -1,65 +1,62 @@
-const {calculate, pObject} = require('../lab2')
+/**
+ * Лабораторна робота 3
+ * Виконав студент гр. ІО-83 Мітячкін Д. Є.
+ * Варіант 16
+ */
 
-const time = 2403
-const k1 = 1, k2 = 1
+const {calculate, p, factorial, pReserve} = require('../helpers')
 
+// Сталі величини
+const time = 2403, k1 = 1, k2 = 1
 
-const pSystem = calculate(pObject)
+// Базова
+const pSystem = calculate(p)
 const qSystem = 1 - pSystem
-const tSystem = -time / Math.log(pSystem, e)
+const tSystem = -1 * time / Math.log(pSystem)
 
+// Система з навантаженим загальним резервуванням
 const qReservedSystem = qSystem / factorial(k1 + 1)
 const pReservedSystem = 1 - qReservedSystem
-const tReservedSystem = -time / log(pReservedSystem, e)
+const tReservedSystem = -1 * time / Math.log(pReservedSystem)
+
+// Виграш системи з навантаженим загальним резервуванням
 const gQ = qReservedSystem / qSystem
 const gP = pReservedSystem / pSystem
 const gT = tReservedSystem / tSystem
 
-const qReserved1 = (1 - p1)**(k2 + 1)
-const qReserved2 = (1 - p2)**(k2 + 1)
-const qReserved3 = (1 - p3)**(k2 + 1)
-const qReserved4 = (1 - p4)**(k2 + 1)
-const qReserved5 = (1 - p5)**(k2 + 1)
-const qReserved6 = (1 - p6)**(k2 + 1)
-const qReserved7 = (1 - p7)**(k2 + 1)
-const qReserved8 = (1 - p8)**(k2 + 1)
+// Резервування
+const pReserved = pReserve(p, k2)
 
-const pReserved1 = 1 - qReserved1
-const pReserved2 = 1 - qReserved2
-const pReserved3 = 1 - qReserved3
-const pReserved4 = 1 - qReserved4
-const pReserved5 = 1 - qReserved5
-const pReserved6 = 1 - qReserved6
-const pReserved7 = 1 - qReserved7
-const pReserved8 = 1 - qReserved8
-
-const pAllReservedSystem = calc(pReserved1, pReserved2, pReserved3, pReserved4, pReserved5, pReserved6, pReserved7, pReserved8)
+// Система з навантаженим розподіленим резервуванням
+const pAllReservedSystem = calculate(pReserved)
 const qAllReservedSystem = 1 - pAllReservedSystem
-const tAllReservedSystem = -time / log(pAllReservedSystem, e)
+const tAllReservedSystem = -1 * time / Math.log(pAllReservedSystem)
+
+// Виграш системи з навантаженим розподіленим резервуванням
 const gAllQ = qAllReservedSystem / qSystem
 const gAllP = pAllReservedSystem / pSystem
 const gAllT = tAllReservedSystem / tSystem
 
-console.log("Базова імовірність безвідмовної роботи = {}\n"
-"Базова імовірність відмови = {}\n"
-"Базовий середній наробіток на відмову = {}\n".format(pSystem, qSystem, tSystem))
 
-console.log("Імовірність безвідмовної роботи системи з навантаженим загальним резервуванням = {}\n"
-"Імовірність відмови системи з навантаженим загальним резервуванням = {}\n"
-"Середній час роботи системи з навантаженим загальним резервуванням = {}".format(pReservedSystem,
-    qReservedSystem, tReservedSystem))
-console.log("Виграш системи з навантаженим загальним резервуванням по імовірності безвідмовної роботи = {}\n"
-"Виграш системи з навантаженим загальним резервуванням по імовірності відмови = {}\n"
-"Виграш системи з навантаженим загальним резервуванням по середньому часу роботи = {}\n".format(gP, gQ, gT))
+console.log(`
+Базова імовірність безвідмовної роботи = ${pSystem}
+Базова імовірність відмови = ${qSystem}
+Базовий середній наробіток на відмову = ${tSystem}
 
-console.log("Імовірність безвідмовної роботи системи з навантаженим розподіленим резервуванням = {}\n"
-"Імовірність відмови системи з навантаженим розподіленим резервуванням = {}\n"
-"Середній час роботи системи з навантаженим розподіленим резервуванням = {}".format(pAllReservedSystem,
-    qAllReservedSystem, tAllReservedSystem))
-console.log("Виграш системи з навантаженим розподіленим резервуванням по імовірності безвідмовної роботи = {}\n"
-"Виграш системи з навантаженим розподіленим резервуванням по імовірності відмови = {}\n"
-"Виграш системи з навантаженим розподіленим резервуванням по середньому часу роботи = {}\n".format(gAllP,
-    gAllQ, gAllT))
+Імовірність безвідмовної роботи системи з навантаженим загальним резервуванням = ${pReservedSystem}
+Імовірність відмови системи з навантаженим загальним резервуванням = ${qReservedSystem}
+Середній час роботи системи з навантаженим загальним резервуванням = ${tReservedSystem}
 
+Виграш системи з навантаженим загальним резервуванням по імовірності безвідмовної роботи = ${gP}
+Виграш системи з навантаженим загальним резервуванням по імовірності відмови = ${gQ}
+Виграш системи з навантаженим загальним резервуванням по середньому часу роботи = ${gT}
 
+Імовірність безвідмовної роботи системи з навантаженим розподіленим резервуванням = ${pAllReservedSystem}
+Імовірність відмови системи з навантаженим розподіленим резервуванням = ${qAllReservedSystem}
+Середній час роботи системи з навантаженим розподіленим резервуванням = ${tAllReservedSystem}
+
+Виграш системи з навантаженим розподіленим резервуванням по імовірності безвідмовної роботи = ${gAllP}
+Виграш системи з навантаженим розподіленим резервуванням по імовірності відмови = ${gAllQ}
+Виграш системи з навантаженим розподіленим резервуванням по середньому часу роботи = ${gAllT}
+`)
 
