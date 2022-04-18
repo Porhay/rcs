@@ -30,6 +30,8 @@ let intervalLen = 0
 let tenIntervals = []
 let statDensities = []
 let pList = []
+let sortedTable = hourTable.sort((a,b)=>a-b)
+
 
 const getTcp = (table) => {
     const tableSum = table.reduce((previous, current) => previous + current, 0)
@@ -37,18 +39,16 @@ const getTcp = (table) => {
     return tableSum / tableLen
 }
 
-
 const getT = (gamma) => {
-    intervalLen = (hourTable.sort()[-1] - hourTable.sort()[0]) / 10
+    intervalLen = (sortedTable[sortedTable.length - 1] - sortedTable[0]) / 10
 
     for (let i=0; i<=10; i++) {
-        const result = hourTable.sort().filter((a) => i * intervalLen >= a && a<=(i+1)*intervalLen)
-        tenIntervals.push(result)
+        tenIntervals.push(sortedTable.filter((a) => a >= i * intervalLen && a<=(i+1)*intervalLen))
     }
 
 
-    for (let interval in tenIntervals) {
-        tenIntervals[interval] = interval.length / (hourTable.sort().length * intervalLen)
+    for (let interval of tenIntervals) {
+        statDensities.push(interval.length / (sortedTable.length * intervalLen))
     }
 
 
@@ -59,12 +59,12 @@ const getT = (gamma) => {
     }
 
 
-    let less = [], more = []
-    pList.forEach((p) => {
-        p < gamma ? less.push(p) : more.push(p)
-    })
-    const pLess = Math.max(less)
-    const pMore = Math.min(more)
+    let less = pList.filter(p => p < gamma)
+    let more = pList.filter(p => p > gamma)
+
+
+    const pLess = Math.max(...less)
+    const pMore = Math.min(...more)
 
 
     const indexMore = pList.indexOf(pMore)
@@ -77,7 +77,7 @@ const getT = (gamma) => {
 
 const pUnfail = (time) => {
     let sum = 1
-    const wholeIntervals = parseInt(time / intervalLen)
+    const wholeIntervals = Math.floor(time / intervalLen)
     for (let i=0; i<wholeIntervals; i++) {
         sum -= statDensities[i] * intervalLen
     }
