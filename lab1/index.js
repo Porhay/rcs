@@ -86,7 +86,7 @@ const pUnfail = (time) => {
 }
 
 const failFreq = (time) => {
-    const wholeIntervals = parseInt(time / intervalLen)
+    const wholeIntervals = Math.floor(time / intervalLen)
     const f = statDensities[wholeIntervals]
     const p = pUnfail(time)
     return f / p
